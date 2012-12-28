@@ -550,6 +550,16 @@ CREATE TABLE `perfil` (
   PRIMARY KEY  (`CodPerfil`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 ;
 
+CREATE TABLE `habilitado` (
+  `CodHabilitado` int(11) NOT NULL auto_increment,
+  `FechaInicio` date NOT NULL,
+  `FechaFin` date NOT NULL,
+  `CodCarrera` int(11) NOT NULL,
+  `DesdeNombre` varchar(1) NOT NULL,
+  `HastaNombre` varchar(1) NOT NULL,
+  PRIMARY KEY  (`CodHabilitado`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 ;
+
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
