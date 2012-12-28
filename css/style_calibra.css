@@ -1,0 +1,14 @@
+			.draggable{
+				cursor:pointer;
+				font-weight:bold;
+				/*display:inline-block;*/
+				/*background-color:#FFF;*/
+			}
+			#anverso{
+				background: url("../images/anverso.jpg") repeat-x scroll left top;
+				border:1px solid #000;
+			}
+			#reverso{
+				background: url("../images/reverso.jpg") repeat-x scroll left top;
+				border:1px solid #000;
+			}

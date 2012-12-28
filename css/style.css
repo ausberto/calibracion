@@ -1,0 +1,11 @@
+#anverso,#anverso1{
+	width:500px;
+	height:352px;
+}
+#reverso,#reverso1{
+	width:500px;
+	height:352px;
+}
+.draggable{
+	/*display:inline-block;*/
+}

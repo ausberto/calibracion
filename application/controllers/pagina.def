@@ -1,0 +1,28 @@
+<div style="border:1px solid #990000;padding-left:20px;margin:0 0 10px 0;">
+
+<h4>A PHP Error was encountered</h4>
+
+<p>Severity: Notice</p>
+<p>Message:  Undefined variable: _SESSION</p>
+<p>Filename: controllers/calibra.php</p>
+<p>Line Number: 62</p>
+
+</div><div style="border:1px solid #990000;padding-left:20px;margin:0 0 10px 0;">
+
+<h4>A PHP Error was encountered</h4>
+
+<p>Severity: Notice</p>
+<p>Message:  Undefined variable: _SESSION</p>
+<p>Filename: controllers/calibra.php</p>
+<p>Line Number: 62</p>
+
+</div><div style="border:1px solid #990000;padding-left:20px;margin:0 0 10px 0;">
+
+<h4>A PHP Error was encountered</h4>
+
+<p>Severity: Notice</p>
+<p>Message:  Undefined variable: _SESSION</p>
+<p>Filename: controllers/calibra.php</p>
+<p>Line Number: 62</p>
+
+</div>a:3:{s:7:"anverso";s:0:"";s:7:"reverso";s:0:"";s:8:"espacios";N;}
