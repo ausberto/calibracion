@@ -550,13 +550,13 @@ CREATE TABLE `perfil` (
   PRIMARY KEY  (`CodPerfil`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 ;
 
-CREATE TABLE `habilitado` (
-  `CodHabilitado` int(11) NOT NULL auto_increment,
+CREATE TABLE `habilitacion` (
+  `CodHabilitacion` int(11) NOT NULL auto_increment,
   `FechaInicio` date NOT NULL,
   `FechaFin` date NOT NULL,
   `CodCarrera` int(11) NOT NULL,
-  `DesdeNombre` varchar(1) NOT NULL,
-  `HastaNombre` varchar(1) NOT NULL,
+  `DesdeNombre` varchar(10) NOT NULL,
+  `HastaNombre` varchar(10) NOT NULL,
   PRIMARY KEY  (`CodHabilitado`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 ;
 

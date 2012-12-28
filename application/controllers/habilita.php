@@ -2,6 +2,11 @@
 
 class Habilita extends CI_Controller {
 
+	function __construct() {
+        parent::__construct();
+		$this->load->model('Modelo_habilitacion','modelo_habilitacion');
+    }
+	
 	public function index()
 	{
 		$this->load->view('habilita_lista');
@@ -9,20 +14,30 @@ class Habilita extends CI_Controller {
 	
 	public function agrega()
 	{
-		if ($this->input->post('FechaInicio')){
-			/*$this->load->model('Modelo');
-			$this->Modelo->agrega(); */
-		}
-		$this->load->view('habilita_agrega');
+		$data['VistaMenu'] = 'vista_menu';
+        if ($this->form_validation->run()) {
+			$FechaInicio = FechaParaMySQL($this->input->post('FechaInicio'));
+			$FechaFin = FechaParaMySQL($this->input->post('FechaFin'));
+			$this->modelo_habilitacion->Insert($FechaInicio, $FechaFin, $this->input->post('CodCarrera'), $this->input->post('DesdeNombre'),$this->input->post('HastaNombre'));
+			$data['Mensaje'] = "Se ha registrado la habilitaci&oacute;n de matr&iacute;culas.";
+            $data['VistaPrincipal'] = 'vista_mensaje';
+		} else
+            $data['VistaPrincipal'] = 'habilita_agrega';      
+        $this->load->view('vista_maestra', $data);
 	}
 	
 	public function edita($id=0)
 	{
-		if ($this->input->post('FechaInicio')){
-			/*$this->load->model('Modelo');
-			$this->Modelo->edita(); */
-		}
-		$this->load->view('habilita_edita');
+		$data['VistaMenu'] = 'vista_menu';
+        if ($this->form_validation->run()) {
+			$FechaInicio = FechaParaMySQL($this->input->post('FechaInicio'));
+			$FechaFin = FechaParaMySQL($this->input->post('FechaFin'));
+			$this->modelo_habilitacion->Update($this->input->post('CodHabilitacion'),$FechaInicio, $FechaFin, $this->input->post('CodCarrera'), $this->input->post('DesdeNombre'),$this->input->post('HastaNombre'));
+			$data['Mensaje'] = "Se ha actualizado la habilitaci&oacute;n de matr&iacute;culas.";
+            $data['VistaPrincipal'] = 'vista_mensaje';
+		} else
+            $data['VistaPrincipal'] = 'habilita_edita';      
+        $this->load->view('vista_maestra', $data);
 	}
 
 	public function verificar($id_carrera)
