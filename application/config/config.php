@@ -1,5 +1,9 @@
 <?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
+$config['NUEVO'] = 0;
+$config['EDICION'] = 1;
+$config['fonts_path'] = APPPATH.'third_party/fpdf/font/';
+ 
 /*
 |--------------------------------------------------------------------------
 | Base Site URL
@@ -26,7 +30,7 @@ $config['base_url']	= '';
 | variable so that it is blank.
 |
 */
-$config['index_page'] = 'index.php';
+$config['index_page'] = '';
 
 /*
 |--------------------------------------------------------------------------
@@ -69,7 +73,7 @@ $config['url_suffix'] = '';
 | than english.
 |
 */
-$config['language']	= 'english';
+$config['language']	= 'espanol';
 
 /*
 |--------------------------------------------------------------------------
@@ -224,7 +228,7 @@ $config['cache_path'] = '';
 | MUST set an encryption key.  See the user guide for info.
 |
 */
-$config['encryption_key'] = 'aus';
+$config['encryption_key'] = '3st4#3s/l4$b4t4ll4-d3l!c4l3nt4mi3nt0';
 
 /*
 |--------------------------------------------------------------------------
