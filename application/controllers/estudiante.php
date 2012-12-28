@@ -114,7 +114,8 @@ class Estudiante extends CI_Controller {
 
     function EliminarEstudiante() {
 		$this->form_validation->set_rules('CodPersona', '"CodPersona"', 'required');
-        if ($this->form_validation->run()) {
+        $data['VistaMenu'] = $this->Menu;
+		if ($this->form_validation->run()) {
 			$CodPersona = $this->input->post('CodPersona');
 			$Accion = $this->input->post("submit");
 			if ($Accion == "borrar") {

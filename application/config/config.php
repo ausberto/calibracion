@@ -18,7 +18,7 @@ $config['fonts_path'] = APPPATH.'third_party/fpdf/font/';
 | path to your installation.
 |
 */
-$config['base_url']	= '';
+$config['base_url']	= 'http://localhost/Regin/calibracion/';
 
 /*
 |--------------------------------------------------------------------------

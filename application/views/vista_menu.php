@@ -11,7 +11,7 @@
 				<li><a href='<?php echo base_url() ?>estudiante/BuscaParaModificar/1' title="Modificar datos de universitario">Modificar</a></li>
 				<?php } ?>
 				<?php if($Llave[3]){ ?>
-				<li><a href='<?php echo base_url() ?>index.php/Matriculacion/Eliminar' title="Eliminar registro de universitario">Eliminar</a></li>
+				<li><a href='<?php echo base_url() ?>estudiante/BuscaParaEliminar' title="Eliminar registro de universitario">Eliminar</a></li>
 				<?php } ?>
 			</ul>
 		</li>

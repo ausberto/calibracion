@@ -12,11 +12,14 @@ echo form_open("configuracion/Varios",  array('id' => 'Configuracion', 'name' =>
 <br /><label for='Gestion'>Gesti&oacute;n </label>
 <?php echo ComboGestion($this->session->userdata('Gestion')); ?><br /><br />
 
-<label for='Desde'>Costo matr&iacute;cula nacional</label>
+<label for='Desde'>Costo matr&iacute;cula nacional Bs. </label>
 <input type='text' id='Nacional' name='Nacional' size='10' class='required number' maxlength='10' value='<?php echo $Nacional; ?>' /><br /><br />
 
-<label for='Desde'>Costo matr&iacute;cula extranjero</label>
+<label for='Desde'>Costo matr&iacute;cula extranjero Bs. </label>
 <input type='text' id='Extranjero' name='Extranjero' size='10' class='required number' maxlength='10' value='<?php echo $Extranjero; ?>' /><br /><br />
+
+<label for='Desde'>Costo matr&iacute;cula nacional Bs. </label>
+<input type='text' id='Nacional' name='Nacional' size='10' class='required number' maxlength='10' value='<?php echo $Nacional; ?>' /><br /><br />
 
 <hr /><br />
 <div class='span-3 prefix-4 suffix-3 last center'>
