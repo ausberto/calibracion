@@ -17,6 +17,11 @@ class Modelo_carrera extends CI_Model {
 			$s .= "<option value='".$row->CodCarrera."'".($CodCarrera==$row->CodCarrera? ' selected ':'').">".$row->Nombre."</option>";
         return $s."</select>";
 	}
+	
+	function GetCarrera($CodCarrera) {
+		$sql = "select * from carrera where CodCarrera=$CodCarrera";
+        return $this->db->query($sql)->row();
+	}
 }
 
 ?>

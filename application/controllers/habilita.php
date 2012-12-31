@@ -15,6 +15,8 @@ class Habilita extends CI_Controller {
 	public function agrega()
 	{
 		$data['VistaMenu'] = 'vista_menu';
+		$this->form_validation->set_rules('FechaInicio', '"FechaInicio"', 'trim|valid_date');
+		$this->form_validation->set_rules('FechaFin', '"FechaFin"', 'trim|valid_date');
         if ($this->form_validation->run()) {
 			$FechaInicio = FechaParaMySQL($this->input->post('FechaInicio'));
 			$FechaFin = FechaParaMySQL($this->input->post('FechaFin'));
@@ -26,17 +28,22 @@ class Habilita extends CI_Controller {
         $this->load->view('vista_maestra', $data);
 	}
 	
-	public function edita($id=0)
+	public function edita($CodHabilitacion=0)
 	{
 		$data['VistaMenu'] = 'vista_menu';
+		$this->form_validation->set_rules('FechaInicio', '"FechaInicio"', 'trim|valid_date');
+		$this->form_validation->set_rules('FechaFin', '"FechaFin"', 'trim|valid_date');
         if ($this->form_validation->run()) {
 			$FechaInicio = FechaParaMySQL($this->input->post('FechaInicio'));
 			$FechaFin = FechaParaMySQL($this->input->post('FechaFin'));
 			$this->modelo_habilitacion->Update($this->input->post('CodHabilitacion'),$FechaInicio, $FechaFin, $this->input->post('CodCarrera'), $this->input->post('DesdeNombre'),$this->input->post('HastaNombre'));
 			$data['Mensaje'] = "Se ha actualizado la habilitaci&oacute;n de matr&iacute;culas.";
             $data['VistaPrincipal'] = 'vista_mensaje';
-		} else
-            $data['VistaPrincipal'] = 'habilita_edita';      
+		} else {
+			$Fila = $this->modelo_habilitacion->GetItem($CodHabilitacion);
+			$data['Fila'] = $Fila;
+            $data['VistaPrincipal'] = 'habilita_edita';
+		}
         $this->load->view('vista_maestra', $data);
 	}
 

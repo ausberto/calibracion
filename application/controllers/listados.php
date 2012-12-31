@@ -8,7 +8,7 @@ class Listados extends CI_Controller {
         parent::__construct();
 		define('FPDF_FONTPATH',$this->config->item('fonts_path'));
 		$this->load->library('fpdf');
-		
+
 		//$TipoUsuario = $this->session->userdata('TipoUsuario');
 		$TipoUsuario = 1;
 		$this->Menu = ObtieneVista($TipoUsuario);
@@ -26,6 +26,7 @@ class Listados extends CI_Controller {
 	
 	function ListaPorCarrera2(){
 		$data['CodCarrera'] = $this->input->post('CodCarrera');
+		$data['Carrera'] = $this->modelo_carrera->GetCarrera($this->input->post('CodCarrera'));
 		$data['Gestion'] = $this->input->post('Gestion');
 		$data['CI'] = $this->input->post('CI');
 		$data['RegUniversitario'] = $this->input->post('RegUniversitario');

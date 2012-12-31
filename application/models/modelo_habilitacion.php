@@ -9,6 +9,12 @@ class Modelo_habilitacion extends CI_Model {
         parent::__construct();
     }
 	
+	function GetItem($CodHabilitacion){
+		$sql = "SELECT * FROM habilitacion WHERE CodHabilitacion=$CodHabilitacion";
+		$query = $this->db->query($sql);
+		return $query->row();
+	}
+	
 	function ComboCarrera($CodCarrera=0,$Requerido=False) {
 		$sql = "select * from carrera order by Nombre";
         $resultado = $this->db->query($sql);
