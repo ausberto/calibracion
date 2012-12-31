@@ -8,7 +8,7 @@ class Modelo_carrera extends CI_Model {
         parent::__construct();
     }
 
-	function ComboCarrera($CodCarrera, $Nombre, $Requerido=False) {
+	function ComboCarrera($CodCarrera=0, $Nombre='CodCarrera', $Requerido=False) {
 		$sql = "select * from carrera order by Nombre";
         $resultado = $this->db->query($sql);
         $s = "<select name='$Nombre' id='$Nombre'".($Requerido?" class='required'":"").">";

@@ -85,5 +85,17 @@ class Usuario extends CI_Controller {
             $this->Listado();
         
     }
+    function Verificacion() {
+        $this->load->model('Modelo_usuario');
+        if($this->Modelo_usuario->GetXUsuario($_POST['Usuario']))
+        {
+            echo "1";
+        }
+        else {
+            //echo $_POST['Pais'];
+            echo "0";
+        }
+        
+    }
 }
 ?>

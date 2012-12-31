@@ -4,13 +4,14 @@ class Formulario extends CI_Controller {
 
     function __construct() {
         parent::__construct();
+        //$this->load->model('modelo_valores', '', TRUE);
+        //$this->load->model('modelo_carrera', '', TRUE);
+        //$this->load->model('modelo_matricula', '', TRUE);
     }
 
     function Index() {
         $this->load->model('Modelo_formulario');
-        $data['VistaPrincipal'] = 'vista_busca_formulario';
-		//$this->load->view('vista_busca_formulario');
-		$this->load->view('vista_maestra', $data);
+        $this->load->view('vista_busca_formulario');
     }
 
     function Nuevo() {
@@ -25,9 +26,9 @@ class Formulario extends CI_Controller {
         $data['ComboComoTrabaja'] = ComboComoTrabaja("Trabajo", "");
         $data['ComboJornada'] = ComboJornada("Jornada", "");
         $data['ComboTipoColegio'] = ComboTipoColegio("TipoColegio", "");
-        $data['ComboPaisesNacimiento'] = $this->Modelo_formulario->ComboPais("PaisNacimiento", "");
-        $data['ComboPaisesColegio'] = $this->Modelo_formulario->ComboPais("PaisColegio", "");
-        $data['EstadoCivil'] = ComboEstadoCivil("EstadoCivil", "");
+        $data['ComboPaisesNacimiento'] = $this->Modelo_formulario->ComboPais("PaisNacimiento", "11");
+        $data['ComboPaisesColegio'] = $this->Modelo_formulario->ComboPais("PaisColegio", "11");
+        $data['EstadoCivil'] = ComboEstadoCivil("EstadoCivil", "0");
         $data['Modo'] = "Nuevo";
         $this->load->view('vista_formulario01', $data);
     }
@@ -85,6 +86,8 @@ class Formulario extends CI_Controller {
 
         $this->session->set_userdata($datasession);
         if ($this->input->post('Nombres') && $this->input->post('Carnet')) {
+
+
             if ($this->Modelo_formulario->VerificaEstudiante($this->input->post('Nombres'), $this->input->post('Paterno'), $this->input->post('Materno'), $this->input->post('Carnet'))) {
                 $Fila = $this->Modelo_formulario->VerificaEstudiante($this->input->post('Nombres'), $this->input->post('Paterno'), $this->input->post('Materno'), $this->input->post('Carnet'));
                 $datasession = array(
@@ -126,7 +129,7 @@ class Formulario extends CI_Controller {
             } else {
                 $TipoId = "P";
             }
-            $CodPersona = $this->Modelo_formulario->InsertPersona($this->input->post('Paterno'), $this->input->post('Materno'), $this->input->post('Nombres'), $this->input->post('Genero'), $this->input->post('FechaNac'), $this->input->post('LugarNac'), $TipoId, $this->input->post('CI'), $this->input->post('Expedido'), $this->input->post('PaisNacimiento'), $this->input->post('EstadoCivil'), $this->input->post('Domicilio'), $this->input->post('Telefono'), $this->input->post('Celular'), $this->input->post('Correo'), $this->input->post('TelUrgencia'), $this->input->post('Obs'));
+            $CodPersona = $this->Modelo_formulario->InsertPersona($this->input->post('Paterno'), $this->input->post('Materno'), $this->input->post('Nombres'), $this->input->post('Genero'),FechaParaMySQL($this->input->post('FechaNac')) , $this->input->post('LugarNac'), $TipoId, $this->input->post('CI'), $this->input->post('Expedido'), $this->input->post('PaisNacimiento'), $this->input->post('EstadoCivil'), $this->input->post('Domicilio'), $this->input->post('Telefono'), $this->input->post('Celular'), $this->input->post('Correo'), $this->input->post('TelUrgencia'), $this->input->post('Obs'));
             $this->Modelo_formulario->InsertPreuniversitario($CodPersona, $this->input->post('CodUniversidad'), $this->input->post('Colegio'), $this->input->post('AnioEgreso'), $this->input->post('TipoColegio'), $this->input->post('NumTitulo'), $this->input->post('AnioTitulo'), $this->input->post('Localidad'), $this->input->post('PaisColegio'));
             $this->Modelo_formulario->InsertSocioeconomico($CodPersona, $this->input->post('CodZona'), $this->session->userdata('gestion'), $this->input->post('Vivienda'), $this->input->post('Caracteristicas'), $this->input->post('Trabaja'), $this->input->post('Trabajo'), $this->input->post('Jornada'));
             $data['CodPersona'] = $CodPersona;
@@ -147,7 +150,7 @@ class Formulario extends CI_Controller {
             }
             
             
-            $this->Modelo_formulario->UpdatePersona($this->input->post('CodPersona'), $this->input->post('Paterno'), $this->input->post('Materno'), $this->input->post('Nombres'), $this->input->post('Genero'), $this->input->post('FechaNac'), $this->input->post('LugarNac'), $TipoId, $this->input->post('CI'), $this->input->post('Expedido'), $this->input->post('PaisNacimiento'), $this->input->post('EstadoCivil'), $this->input->post('Domicilio'), $this->input->post('Telefono'), $this->input->post('Celular'), $this->input->post('Correo'), $this->input->post('TelUrgencia'), $this->input->post('Obs'));
+            $this->Modelo_formulario->UpdatePersona($this->input->post('CodPersona'), $this->input->post('Paterno'), $this->input->post('Materno'), $this->input->post('Nombres'), $this->input->post('Genero'), FechaParaMySQL($this->input->post('FechaNac')), $this->input->post('LugarNac'), $TipoId, $this->input->post('CI'), $this->input->post('Expedido'), $this->input->post('PaisNacimiento'), $this->input->post('EstadoCivil'), $this->input->post('Domicilio'), $this->input->post('Telefono'), $this->input->post('Celular'), $this->input->post('Correo'), $this->input->post('TelUrgencia'), $this->input->post('Obs'));
             $this->Modelo_formulario->UpdatePreuniversitario($this->input->post('CodPersona'), $this->input->post('CodUniversidad'), $this->input->post('Colegio'), $this->input->post('AnioEgreso'), $this->input->post('TipoColegio'), $this->input->post('NumTitulo'), $this->input->post('AnioTitulo'), $this->input->post('Localidad'), $this->input->post('PaisColegio'));
             $this->Modelo_formulario->UpdateSocioeconomico($this->input->post('CodPersona'), $this->input->post('CodZona'), $this->session->userdata('gestion'), $this->input->post('Vivienda'), $this->input->post('Caracteristicas'), $this->input->post('Trabaja'), $this->input->post('Trabajo'), $this->input->post('Jornada'));
             $data['CodPersona'] = $this->input->post('CodPersona');

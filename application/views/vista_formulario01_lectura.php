@@ -103,8 +103,8 @@
             <div id="tabs">
                 <ul>
 
-                    <li><a href="#tabs-1">Datos Generales</a></li>
-                    <li><a href="#tabs-2">Datos de Egreso</a></li>
+                    <li><a href="#tabs-1">Datos generales</a></li>
+                    <li><a href="#tabs-2">Datos de egreso</a></li>
                     <li><a href="#tabs-3">Datos socio - econ&oacute;micos</a></li>
 
                 </ul>
@@ -113,10 +113,10 @@
                     <table border="0" >
                         <tr>
                             <td valign="top">
-                                <div class="field"><label>Apellido Paterno:</label> <input type="text" id="Paterno" name="Paterno" value="<?php echo $Fila->Paterno?>" readonly="true"/></div>
+                                <div class="field"><label>Apellido paterno:</label> <input type="text" id="Paterno" name="Paterno" value="<?php echo $Fila->Paterno?>" readonly="true"/></div>
                             </td>
                             <td valign="top">
-                                <div class="field"><label>Apellido Materno:</label> <input type="text" id="Materno" name="Materno" value="<?php echo $Fila->Materno?>" readonly="true" /></div> 
+                                <div class="field"><label>Apellido materno:</label> <input type="text" id="Materno" name="Materno" value="<?php echo $Fila->Materno?>" readonly="true" /></div> 
 
                             </td>
                         </tr>
@@ -146,13 +146,13 @@
                                 </div>
                             </td>
                             <td valign="top">
-                                <div class="field"><label>Fecha de Nacimiento:</label> <input type="text" name="FechaNac" id="FechaNac" value="<?php echo $Fila->FechaNac?>" readonly="true" /> </div>
+                                <div class="field"><label>Fecha de nacimiento:</label> <input type="text" name="FechaNac" id="FechaNac" value="<?php echo $Fila->FechaNac?>" readonly="true" /> </div>
                             </td>
                         </tr>
 
                         <tr>
                             <td valign="top">
-                                <div class="field"><label>Lugar de Nacimiento:</label> <input type="text" name="LugarNac" id="LugarNac" value="<?php echo $Fila->LugarNac?>" /> </div>
+                                <div class="field"><label>Lugar de nacimiento:</label> <input type="text" name="LugarNac" id="LugarNac" value="<?php echo $Fila->LugarNac?>" /> </div>
                             </td>
                             <td valign="top">
                                 <div class="field"><label>Pa&iacute;s de  Nacimiento:</label> 
@@ -162,20 +162,18 @@
 
                         <tr>
                             <td valign="top">
-                                <div class="field"><label>Telefono:</label> <input type="text" name="Telefono" id="Telefono" value="<?php echo $Fila->Telefono?>" readonly="true"/> </div>
+                                <div class="field"><label>Tel&eacute;fono:</label> <input type="text" name="Telefono" id="Telefono" value="<?php echo $Fila->Telefono?>" readonly="true"/> </div>
                             </td>
                             <td valign="top">
-                                <div class="field"><label>Correo Electronico:</label> <input type="text" name="Correo" id="Correo" value="<?php echo $Fila->Correo?>" readonly="true" /> </div>
+                                <div class="field"><label>Correo electr&oacute;nico:</label> <input type="text" name="Correo" id="Correo" value="<?php echo $Fila->Correo?>" readonly="true" /> </div>
                             </td>
                         </tr>
 
                         <tr>
-                            <td valign="top">
-                                <div class="field"><label>Domicilio:</label> <input type="text" name="Domicilio" id="Domicilio" value="<?php echo $Fila->Domicilio?>" readonly="true" /> </div>
+                            <td valign="top" colspan="2">
+                                <div class="field"><label>Domicilio:</label> <input type="text" name="Domicilio" id="Domicilio" value="<?php echo $Fila->Domicilio?>" readonly="true" size="50"/> </div>
                             </td>
-                            <td valign="top">
-
-                            </td>
+                           
                         </tr>
 
 
@@ -183,7 +181,7 @@
 
                         <tr>
                             <td valign="top">
-                                <div class="field"><label>Estado Civil:</label> 
+                                <div class="field"><label>Estado civil:</label> 
                                    <?php echo $EstadoCivil;?>
                             </td>
                             <td>
@@ -199,10 +197,10 @@
                             <table border="0" >
                         <tr>
                             <td valign="top">
-                                <div class="field"><label>Colegio:</label> <input type="text" name="Colegio" id="Colegio" value="<?php echo $Fila->Colegio?>" readonly="true"/></div>
+                                <div class="field"><label>Colegio:</label> <input type="text" name="Colegio" id="Colegio" value="<?php echo $Fila->Colegio?>" readonly="true" size="40"/></div>
                             </td>
                             <td valign="top">
-                                <div class="field"><label>A&ntilde;o de Egreso:</label> <input type="text" name="AnioEgreso"  id="AnioEgreso" value="<?php echo $Fila->AnioEgreso?>" readonly="true" /></div> 
+                                <div class="field"><label>A&ntilde;o de egreso:</label> <input type="text" name="AnioEgreso"  id="AnioEgreso" value="<?php echo $Fila->AnioEgreso?>" readonly="true" /></div> 
 
                             </td>
                         </tr>
@@ -224,7 +222,7 @@
                                 <div class="field"><label>Localidad:</label> <input type="text" name="Localidad" id="Localidad" value="<?php echo $Fila->Localidad?>" readonly="true" /></div>
                             </td>
                             <td valign="top">
-                               <div class="field"><label>Pais:</label> 
+                               <div class="field"><label>Pa&iacute;s:</label> 
                                    <?php echo $ComboPaisesColegio; ?>
                             </td>
                         </tr>
@@ -238,10 +236,10 @@
                         
                           <tr>
                             <td valign="top" >
-                                <div class="field"><label>A&ntilde;o Titulo:</label> <input type="text" name="AnioTitulo" id="AnioTitulo" value="<?php echo $Fila->AnioTitulo?>" readonly="true" /></div>
+                                <div class="field"><label>A&ntilde;o t&iacute;tulo:</label> <input type="text" name="AnioTitulo" id="AnioTitulo" value="<?php echo $Fila->AnioTitulo?>" readonly="true" /></div>
                             </td>
                               <td valign="top">
-                                  <div class="field"><label>N&uacute;mero de T&iacute;tulo:</label> <input type="text" name="NumTitulo"  id="NumTitulo" value="<?php echo $Fila->NumTitulo?>" readonly="true" /></div>
+                                  <div class="field"><label>N&uacute;mero de t&iacute;tulo:</label> <input type="text" name="NumTitulo"  id="NumTitulo" value="<?php echo $Fila->NumTitulo?>" readonly="true" /></div>
                             </td>
                             
                         </tr>
@@ -251,17 +249,17 @@
 
                 </div>
                 <div id="tabs-3">
-                    <table border="0" >
+                    <table border="0" width="60%" align="center" >
                         <tr>
-                            <td valign="top">
-                                <div class="field"><label>Zona Aproximada de la Vivienda</label> 
+                            <td valign="top" align="center">
+                                <div class="field"><label>Zona aproximada de la vivienda</label> 
                                     <?php echo $ComboZona;?></div>
                             </td>
                            
                         </tr>
                         <tr>
                             <td valign="top">
-                                <div class="field"><label>La Vivienda que Habita es?:</label> 
+                                <div class="field"><label>La vivienda que habita es?:</label> 
                                 <?php echo $ComboVivienda;?></div>
                                 </div>
                             </td>
@@ -270,7 +268,7 @@
                         
                         <tr>
                             <td valign="top">
-                                <div class="field"><label>Caracteristicas de la Vivienda?:</label> 
+                                <div class="field"><label>Caracter&iacute;sticas de la vivienda?:</label> 
                                     <?php echo $ComboCaracteristicasVivienda;?></div>
                             </td>
                             
@@ -305,7 +303,7 @@
                             
                         </tr>
                          <tr>
-                            <td valign="top">
+                            <td valign="top" >
                                 <div class="field"><label>Jornada:</label> 
                                     <?php echo $ComboJornada;?></div>
                             </td>

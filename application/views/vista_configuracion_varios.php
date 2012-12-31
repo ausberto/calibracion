@@ -1,6 +1,14 @@
 <script type="text/javascript">
 $(document).ready(function() {
-	$("#Configuracion").validate();
+	$("#Configuracion").validate({
+    rules: {
+		Depuracion: {
+			required: true,
+			min: 2,
+			number: true
+		}
+	}
+	});
 });
 </script>
 <div class="span-10 prefix-7 suffix-7 last center">
@@ -18,8 +26,8 @@ echo form_open("configuracion/Varios",  array('id' => 'Configuracion', 'name' =>
 <label for='Desde'>Costo matr&iacute;cula extranjero Bs. </label>
 <input type='text' id='Extranjero' name='Extranjero' size='10' class='required number' maxlength='10' value='<?php echo $Extranjero; ?>' /><br /><br />
 
-<label for='Desde'>Costo matr&iacute;cula nacional Bs. </label>
-<input type='text' id='Nacional' name='Nacional' size='10' class='required number' maxlength='10' value='<?php echo $Nacional; ?>' /><br /><br />
+<label for='Depuracion'>D&iacute;as para depuraci&oacute;n </label>
+<input type='text' id='Depuracion' name='Depuracion' size='10' maxlength='10' value='<?php echo $Depuracion; ?>' /><br /><br />
 
 <hr /><br />
 <div class='span-3 prefix-4 suffix-3 last center'>

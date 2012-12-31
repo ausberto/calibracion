@@ -7,6 +7,17 @@
         return $s . "</select>";
     }
 	
+	function ObtieneVista($TipoUsuario) {
+		if( $TipoUsuario==0 ) 
+			return 'vista_menu_super';
+		else if( $TipoUsuario==1 ) 
+			return 'vista_menu';
+		else if( $TipoUsuario==2 ) 
+			return 'vista_menu_operador1';
+		else if( $TipoUsuario==3 ) 
+			return 'vista_menu_operador2';
+    }
+	
 	function FechaLiteral($Fecha, $Formato=2) {
         $dias = array(1=>'Lunes', 2=>'Martes', 3=>'Mi�rcoles', 4=>'Jueves', 5=>'Viernes', 6=>'S�bado', 7=>'Domingo');
         $meses = array(1=>'enero', 2=>'febrero', 3=>'marzo', 4=>'abril', 5=>'mayo', 6=>'junio',

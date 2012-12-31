@@ -105,6 +105,19 @@ class Modelo_matricula extends CI_Model {
 		$query = $this->db->query($sql);
 		return $query->row()->Conteo == 0;
 	}
+	
+	function TablaMatriculados($CodCarrera, $Gestion) {
+		$sql = "SELECT CONCAT_WS(' ', Paterno, Materno, Nombres) AS NombreCompleto, CONCAT(CI, ' ', Expedido) AS CI, RegUniversitario
+				FROM matricula, estudiante_carrera, persona, estudiante
+				WHERE matricula.CodEstudianteCarrera=estudiante_carrera.CodEstudianteCarrera
+				AND estudiante_carrera.CodPersona=persona.CodPersona
+				AND persona.CodPersona=estudiante.CodPersona
+				AND estudiante_carrera.CodPersona=estudiante.CodPersona
+				AND matricula.Gestion='$Gestion'
+				AND estudiante_carrera.CodCarrera=$CodCarrera
+				ORDER BY NombreCompleto";
+		return $this->db->query($sql);
+	}
 }
 
 ?>

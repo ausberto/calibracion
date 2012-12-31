@@ -20,12 +20,59 @@
 /**************************************/
 /*              GLOBALS               */
 /**************************************/
-
+body {
+  background-image:url(../imagenes/diagonal.png);
+}
 
 /**************************************/
 /*              HEADER                */
 /**************************************/
-
+#titulou{
+    height: 120px;
+    width: 100%;
+    background-color: #676aaf;
+    background-image: url(../imagenes/upea.png);
+    background-repeat: no-repeat;
+    background-position:  right;
+    border: 1px solid transparent;
+    
+}
+#logos{
+    height: 100px;
+    width: 28%;
+}
+#upea{
+    background-image: url(../imagenes/upeaex.png);
+    background-repeat: no-repeat;
+    background-position:  right;
+    border: 0px solid red;
+    width: 50%;
+    height: 450px;
+    float: left;
+    
+}
+#login{
+    width: 48%;
+    height: 450px;
+    
+    float: right;
+    vertical-align: bottom;
+}
+#cabecera h1{
+    color:#fff;
+    text-transform: uppercase;
+    text-align: center;
+    font-family: monaco, "Lucida Console", courier, monospace;
+}
+#pie{
+    background-color: #999999;
+    color:#fff;
+    font-family: monaco, "Lucida Console", courier, monospace;
+}
+label{
+	float: left;
+	width: 120px;
+}
 
 
 /**************************************/

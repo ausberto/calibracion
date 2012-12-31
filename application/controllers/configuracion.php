@@ -1,8 +1,9 @@
 <?php
 
 class Configuracion extends CI_Controller {
-
-    function __construct() {
+    private $Menu = 'vista_menu';
+    
+	function __construct() {
         parent::__construct();
 		
 		//solo para pruebas
@@ -35,16 +36,36 @@ class Configuracion extends CI_Controller {
 		$data['VistaMenu'] = 'vista_menu';
 		$data['Nacional'] = $this->modelo_valores->GetNumero('MATRICULANACIONAL')/100;
 		$data['Extranjero'] = $this->modelo_valores->GetNumero('MATRICULAEXTRANJERO')/100;
+		$data['Depuracion'] = $this->modelo_valores->GetNumero('DEPURACION');
 		$this->form_validation->set_rules('Gestion', '"Gestion"', 'trim|required');
         if ($this->form_validation->run()) {
 			$this->modelo_valores->SetNumero('GESTION', $this->input->post('Gestion'));
 			$this->modelo_valores->SetNumero('MATRICULANACIONAL', $this->input->post('Nacional')*100);
 			$this->modelo_valores->SetNumero('MATRICULAEXTRANJERO', $this->input->post('Extranjero')*100);
+			$this->modelo_valores->SetNumero('DEPURACION', $this->input->post('Depuracion'));
 			$data['Mensaje'] = "Se han registrado los datos de configuraci&oacute;n.";                        
             $data['VistaPrincipal'] = 'vista_mensaje';     										  
 		} else
             $data['VistaPrincipal'] = 'vista_configuracion_varios';      
         $this->load->view('vista_maestra', $data);
 	}
+	
+	function Depuracion() {
+		$this->form_validation->set_rules('Dias', '"dias"', 'required');
+        $data['VistaMenu'] = $this->Menu;
+		if ($this->form_validation->run()) {
+			$Accion = $this->input->post("submit");
+			if ($Accion == "borrar") {
+				$data['Mensaje'] = 'Los inscritos y no matriculados han sido eliminados de la base de datos.';
+				$data['VistaPrincipal'] = 'vista_mensaje';            
+				$this->load->view('vista_maestra', $data);		
+			}
+		}
+		else {
+            $data['VistaMenu'] = $this->Menu;
+            $data['VistaPrincipal'] = 'vista_depuracion';
+            $this->load->view('vista_maestra', $data);
+        }
+    }
 }
 ?>

@@ -18,6 +18,19 @@
             $(function () {
 
                 // Tabs
+                $("form").keypress(function(e) {
+                    if (e.which == 13) {
+                        return false;
+                    }
+                });
+                
+                $('input').keypress(function(e){ 
+                    if(e.which == 13){ 
+                        return false; 
+                    } 
+                }); 
+  
+    
                 $('#tabs').tabs();
 
                 // Button
@@ -46,7 +59,7 @@
                     inline: false,
                     changeMonth:true,
                     changeYear:true,
-                    dateFormat:"yy-mm-dd",
+                    dateFormat:"dd-mm-yy",
                     yearRange: '1950:2012',
                     onSelect:function(){
                         $("#form").validate().element(this);
@@ -115,53 +128,53 @@
                         
                         
                     },
-                debug: true,
-                submitHandler: function(form){
+                    debug: true,
+                    submitHandler: function(form){
                     
                         
-                $.ajax({
-                    url:'<?php echo base_url(); ?>index.php/Formulario/ValorPais' ,
-                    dataType:'text',
-                    data:{
-                        Pais:$("#PaisNacimiento").val()
-                    },
-                    type:'POST',
-                    success:function(data){
-                        if(data=="1"){
-                            //tiene que tener expedido
-                            if($("#Expedido").val()=="")
-                            {
-                                $("#errorContainer").css('display','');
-                                $("#errorContainer li").remove();
-                                $("#errorContainer").append("<li>Debe seleccionar un Departamento de expedido!</li>");
-                                return false;
-                            }
-                            else{
-                                $("#errorContainer li").remove();
-                                $("#errorContainer").append("<li><strong style='color:green;'>El formulario ha sido validado correctamente!</strong></li>");
-                                $("#errorContainer").css('display','');
-                                form.submit();
+                        $.ajax({
+                            url:'<?php echo base_url(); ?>index.php/Formulario/ValorPais' ,
+                            dataType:'text',
+                            data:{
+                                Pais:$("#PaisNacimiento").val()
+                            },
+                            type:'POST',
+                            success:function(data){
+                                if(data=="1"){
+                                    //tiene que tener expedido
+                                    if($("#Expedido").val()=="")
+                                    {
+                                        $("#errorContainer").css('display','');
+                                        $("#errorContainer li").remove();
+                                        $("#errorContainer").append("<li>Debe seleccionar un Departamento de expedido!</li>");
+                                        return false;
+                                    }
+                                    else{
+                                        $("#errorContainer li").remove();
+                                        $("#errorContainer").append("<li><strong style='color:green;'>El formulario ha sido validado correctamente!</strong></li>");
+                                        $("#errorContainer").css('display','');
+                                        form.submit();
                                 
-                            }
-                        } 
-                        else
-                        {
-                                $("#errorContainer li").remove();
-                                $("#errorContainer").append("<li><strong style='color:green;'>El formulario ha sido validado correctamente!</strong></li>");
-                                $("#errorContainer").css('display','');
-                                form.submit();
+                                    }
+                                } 
+                                else
+                                {
+                                    $("#errorContainer li").remove();
+                                    $("#errorContainer").append("<li><strong style='color:green;'>El formulario ha sido validado correctamente!</strong></li>");
+                                    $("#errorContainer").css('display','');
+                                    form.submit();
                                 
-                        }
-                    }
+                                }
+                            }
                            
-                });
+                        });
                        
-            }
+                    }
                 
-        });
+                });
               
 
-    });
+            });
         </script>
         <style type="text/css">
             body{ font-family:"Segoe UI", Helvetica, Verdana;font-size: 11px; margin: 50px;}
@@ -218,8 +231,8 @@
                 <div id="tabs">
                     <ul>
 
-                        <li><a href="#tabs-1">Datos Generales</a></li>
-                        <li><a href="#tabs-2">Datos de Egreso</a></li>
+                        <li><a href="#tabs-1">Datos generales</a></li>
+                        <li><a href="#tabs-2">Datos de egreso</a></li>
                         <li><a href="#tabs-3">Datos socio - econ&oacute;micos</a></li>
 
                     </ul>
@@ -228,10 +241,10 @@
                         <table border="0" >
                             <tr>
                                 <td valign="top">
-                                    <div class="field"><label>Apellido Paterno:</label> <input type="text" id="Paterno" name="Paterno" value="<?php echo $this->session->userdata('Paterno'); ?>" readonly="true"/></div>
+                                    <div class="field"><label>Apellido paterno:</label> <input type="text" id="Paterno" name="Paterno" value="<?php echo $this->session->userdata('Paterno'); ?>" readonly="true"/></div>
                                 </td>
                                 <td valign="top">
-                                    <div class="field"><label>Apellido Materno:</label> <input type="text" id="Materno" name="Materno" value="<?php echo $this->session->userdata('Materno'); ?>" readonly="true" /></div> 
+                                    <div class="field"><label>Apellido materno:</label> <input type="text" id="Materno" name="Materno" value="<?php echo $this->session->userdata('Materno'); ?>" readonly="true" /></div> 
 
                                 </td>
                             </tr>
@@ -253,36 +266,34 @@
                                     </div>
                                 </td>
                                 <td valign="top">
-                                    <div class="field"><label>Fecha de Nacimiento:</label> <input type="text" name="FechaNac" id="FechaNac" value="" readonly="true"/> </div>
+                                    <div class="field"><label>Fecha de nacimiento:</label> <input type="text" name="FechaNac" id="FechaNac" value="" readonly="true"/> </div>
                                 </td>
                             </tr>
 
                             <tr>
                                 <td valign="top">
-                                    <div class="field"><label>Lugar de Nacimiento:</label> <input type="text" name="LugarNac" id="LugarNac" value="" /> </div>
+                                    <div class="field"><label>Lugar de nacimiento:</label> <input type="text" name="LugarNac" id="LugarNac" value="" /> </div>
                                 </td>
                                 <td valign="top">
-                                    <div class="field"><label>Pa&iacute;s de  Nacimiento:</label> 
+                                    <div class="field"><label>Pa&iacute;s de  nacimiento:</label> 
                                         <?php echo $ComboPaisesNacimiento; ?>
                                 </td>
                             </tr>
 
                             <tr>
                                 <td valign="top">
-                                    <div class="field"><label>Telefono:</label> <input type="text" name="Telefono" id="Telefono" value="" /> </div>
+                                    <div class="field"><label>Tel&eacute;fono:</label> <input type="text" name="Telefono" id="Telefono" value="" /> </div>
                                 </td>
                                 <td valign="top">
-                                    <div class="field"><label>Correo Electronico:</label> <input type="text" name="Correo" id="Correo" value="" /> </div>
+                                    <div class="field"><label>Correo electr&oacute;nico:</label> <input type="text" name="Correo" id="Correo" value="" /> </div>
                                 </td>
                             </tr>
 
                             <tr>
-                                <td valign="top">
-                                    <div class="field"><label>Domicilio:</label> <input type="text" name="Domicilio" id="Domicilio" value="" /> </div>
+                                <td valign="top" colspan="2">
+                                    <div class="field"><label>Domicilio:</label> <input type="text" name="Domicilio" id="Domicilio" value="" size="50" /> </div>
                                 </td>
-                                <td valign="top">
 
-                                </td>
                             </tr>
 
 
@@ -290,7 +301,7 @@
 
                             <tr>
                                 <td valign="top">
-                                    <div class="field"><label>Estado Civil:</label> 
+                                    <div class="field"><label>Estado civil:</label> 
                                         <?php echo $EstadoCivil; ?>
                                 </td>
                                 <td>
@@ -306,10 +317,10 @@
                         <table border="0" >
                             <tr>
                                 <td valign="top">
-                                    <div class="field"><label>Colegio:</label> <input type="text" name="Colegio" id="Colegio" value="" /></div>
+                                    <div class="field"><label>Colegio:</label> <input type="text" name="Colegio" id="Colegio" value="" size="40"/></div>
                                 </td>
                                 <td valign="top">
-                                    <div class="field"><label>A&ntilde;o de Egreso:</label> <input type="text" name="AnioEgreso"  id="AnioEgreso" value="" /></div> 
+                                    <div class="field"><label>A&ntilde;o de egreso:</label> <input type="text" name="AnioEgreso"  id="AnioEgreso" value="" /></div> 
 
                                 </td>
                             </tr>
@@ -331,7 +342,7 @@
                                     <div class="field"><label>Localidad:</label> <input type="text" name="Localidad" id="Localidad" value="" /></div>
                                 </td>
                                 <td valign="top">
-                                    <div class="field"><label>Pais:</label> 
+                                    <div class="field"><label>Pa&iacute;s:</label> 
                                         <?php echo $ComboPaisesColegio; ?>
                                 </td>
                             </tr>
@@ -346,7 +357,7 @@
                             <tr>
                                 <td valign="top" >
 
-                                    <div class="field"><label>A&ntilde;o Titulo:</label> <input type="text" name="AnioTitulo" id="AnioTitulo" value="" /></div>
+                                    <div class="field"><label>A&ntilde;o T&iacute;tulo:</label> <input type="text" name="AnioTitulo" id="AnioTitulo" value="" /></div>
                                 </td>
                                 <td valign="top">
                                     <div class="field"><label>N&uacute;mero de T&iacute;tulo:</label> <input type="text" name="NumTitulo"  id="NumTitulo" value="" /></div>
@@ -359,17 +370,17 @@
 
                     </div>
                     <div id="tabs-3">
-                        <table border="0" >
+                        <table border="0" width="60%" align="center" >
                             <tr>
                                 <td valign="top">
-                                    <div class="field"><label>Zona Aproximada de la Vivienda:</label> 
+                                    <div class="field"><label>Zona aproximada de la vivienda:</label> 
                                         <?php echo $ComboZona; ?></div>
                                 </td>
 
                             </tr>
                             <tr>
                                 <td valign="top">
-                                    <div class="field"><label>La Vivienda que Habita es?:</label> 
+                                    <div class="field"><label>La vivienda que habita es?:</label> 
                                         <?php echo $ComboVivienda; ?></div>
                                     </div>
                                 </td>
@@ -378,7 +389,7 @@
 
                             <tr>
                                 <td valign="top">
-                                    <div class="field"><label>Caracteristicas de la Vivienda?:</label> 
+                                    <div class="field"><label>Caracter&iacute;sticas de la vivienda?:</label> 
                                         <?php echo $ComboCaracteristicasVivienda; ?></div>
                                 </td>
 
@@ -413,11 +424,11 @@
                     <br/>
 
                     <input type="submit" value="Guardar Formulario" id="Guardar" />
-                <input type="hidden" name="Modo" id="Modo" value="<?php echo $Modo;?>">    
+                    <input type="hidden" name="Modo" id="Modo" value="<?php echo $Modo; ?>">    
                 </div>
 
             </form>
-            
+
             <div id="errorContainer"></div>
 
             <div id="dialog" title="Ayuda">

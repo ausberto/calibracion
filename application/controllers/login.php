@@ -6,7 +6,6 @@ class Login extends CI_Controller {
     }
 
     function Index() {
-        //$data['VistaMenu'] = 'vista_menu';
         $data['VistaPrincipal'] = 'vista_login';
 		$this->load->view('vista_maestra', $data);
     }
@@ -22,13 +21,17 @@ class Login extends CI_Controller {
                 $datasession = array(
                     'Usuario' => $usuario,
                     'Autenticado' => TRUE,
-                    'Llave'=>$Fila->Llave
+                    'Llave'=>$Fila->Llave,
+					'CodUsuario'=>$Fila->CodUsuario,
+					'TipoUsuario'=>$Fila->TipoUsuario
                 );
                 $this->session->set_userdata($datasession);
-                redirect('index.php/Matriculacion', 'refresh');
+				$this->session->set_userdata('NombreUsuario', $this->modelo_persona->GetNombre($Fila->CodPersona));
+				$data['VistaMenu'] = 'vista_menu';
+				$data['VistaPrincipal'] = 'vista_nula';
+				$this->load->view('vista_maestra', $data);
             } else {
-
-                $this->session->set_flashdata('error', 'El usuario o contraseña son incorrectos.');
+                $this->session->set_flashdata('error', 'El usuario o contraseña son incorrectos.');				
                 $this->load->view('vista_login');
             }
         } else {
@@ -37,11 +40,12 @@ class Login extends CI_Controller {
     }
 
     function Logout() {
-        //$this->session->unset_userdata('Autenticado');
-        //$this->session->unset_userdata('CodUsuario');
+        $this->session->unset_userdata('Autenticado');
+        $this->session->unset_userdata('Usuario');
+        $this->session->unset_userdata('Llave');
+        $this->session->unset_userdata('Nombre');
         //session_destroy();
-		$this->Index();
-        //$this->load->view('vista_login');
+        $this->load->view('vista_login');
     }
     
     

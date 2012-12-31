@@ -77,6 +77,11 @@ class Modelo_usuario extends CI_Model {
         return $this->db->query($sql);
     }
     
+    function GetXUsuario($Usuario) {
+        $sql = "SELECT * FROM  usuario u WHERE u.NombreUsuario='$Usuario' and u.Activo in ('S')";
+        return $this->db->query($sql)->row();
+    }
+    
     function GetXId($codigo) {
         $sql = "SELECT u.*,p.*,pr.Nombres,pr.Paterno,pr.Materno,pr.Telefono,pr.Celular,pr.Correo FROM  usuario u, perfil p,persona pr 
             WHERE pr.CodPersona=u.CodPersona and u.TipoUsuario=p.CodPerfil and u.Activo in ('S') and u.CodUsuario='$codigo'";

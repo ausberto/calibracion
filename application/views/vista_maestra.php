@@ -3,7 +3,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf8" />
         <?php
-		header('Content-type: text/html; charset=utf-8');
+		//header('Content-type: text/html; charset=utf-8');
 		$this->output->set_header("Cache-Control: no-store, no-cache, must-revalidate, no-transform, max-age=0, post-check=0, pre-check=0");
 		$this->output->set_header("Pragma: no-cache");  
         		
@@ -42,7 +42,7 @@
             date_default_timezone_set('America/La_Paz');
 			$this->load->view('vista_cabezera');
 			if( isset($VistaMenu) ) 
-				$this->load->view($VistaMenu);
+                $this->load->view($VistaMenu);
 			$this->load->view($VistaPrincipal);
 			$this->load->view('vista_pie');
         ?>
