@@ -25,8 +25,6 @@ class Listados extends CI_Controller {
     }
 	
 	function ListaPorCarrera2(){
-		$this->funciones->VerificaSesion();
-		
 		$data['CodCarrera'] = $this->input->post('CodCarrera');
 		$data['Gestion'] = $this->input->post('Gestion');
 		$data['CI'] = $this->input->post('CI');
@@ -40,15 +38,15 @@ class Listados extends CI_Controller {
 		//$this->funciones->VerificaSesion();
 		
 		$this->form_validation->set_rules('CodCarrera', 'carrera', 'required|xss_clean');
+		$data['ComboCarrera'] = $this->modelo_carrera->ComboCarrera();
+		$data['ComboGestion'] = ComboGestion($this->modelo_valores->GetNumero('GESTION'));
+		$data['CI'] = true;
+		$data['RegUniversitario'] = true;
 		$data['VistaMenu'] = $this->Menu;
 		if( $this->form_validation->run() )
 			$this->ListaPorCarrera2();
 		else {
 			$data['VistaPrincipal'] = 'impresion/vista_config_lista_carrera';
-			$data['ComboCarrera'] = $this->modelo_carrera->ComboCarrera();
-			$data['ComboGestion'] = ComboGestion($this->session->userdata('Gestion'));
-			$data['CI'] = true;
-			$data['RegUniversitario'] = true;
 			$this->load->view('vista_maestra', $data);
 		}
 	}
