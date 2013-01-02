@@ -71,22 +71,20 @@ class Listados extends CI_Controller {
 	
 	function ListaMatriculas2(){
 		$data['CodCarrera'] = $this->input->post('CodCarrera');
-		$data['Carrera'] = $this->modelo_carrera->GetCarrera($this->input->post('CodCarrera'));
+		//$data['Carrera'] = $this->modelo_carrera->GetCarrera($this->input->post('CodCarrera'));
 		$data['Gestion'] = $this->input->post('Gestion');
-		$data['CI'] = $this->input->post('CI');
-		$data['RegUniversitario'] = $this->input->post('RegUniversitario');
 		$data['Tabla'] = $this->modelo_matricula->TablaMatriculados($data['CodCarrera'], $data['Gestion']);
 		$this->output->set_header('Content: application/pdf');
 		$this->load->view('impresion/vista_lista_matricula_pdf', $data);
 	}
 	
 	function ListaMatriculas(){
-		$this->form_validation->set_rules('CodCarrera', 'carrera', 'required|xss_clean');
 		$data['ComboCarrera'] = $this->modelo_carrera->ComboCarrera();
 		$data['ComboGestion'] = ComboGestion($this->modelo_valores->GetNumero('GESTION'));
 		$data['CI'] = true;
 		$data['RegUniversitario'] = true;
 		$data['VistaMenu'] = $this->Menu;
+		$this->form_validation->set_rules('Gestion', 'Gestion', 'required|xss_clean');
 		if( $this->form_validation->run() ){
 			$this->ListaMatriculas2();
 		} else {

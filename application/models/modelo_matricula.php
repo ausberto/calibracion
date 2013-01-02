@@ -115,8 +115,8 @@ class Modelo_matricula extends CI_Model {
 				AND persona.CodPersona=estudiante.CodPersona
 				AND estudiante_carrera.CodPersona=estudiante.CodPersona
 				AND matricula.Gestion='$Gestion'
-				AND estudiante_carrera.CodCarrera=$CodCarrera
-				AND carrera.CodCarrera=$CodCarrera
+				".(($CodCarrera)?"AND estudiante_carrera.CodCarrera=$CodCarrera":'')."
+				AND carrera.CodCarrera=estudiante_carrera.CodCarrera
 				ORDER BY NombreCompleto";
 		return $this->db->query($sql);
 	}

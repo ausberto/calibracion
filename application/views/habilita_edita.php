@@ -1,25 +1,25 @@
 <script type="text/javascript">
 $(document).ready(function() {
-	$("#Hablitacion").validate();
+	$("#habilitacion").validate();
 });
 </script>
 <div class="span-10 prefix-7 suffix-7 last center">
 <?php 
-echo form_open("habilita/edita",  array('id' => 'Hablitacion', 'name' => 'Hablitacion'));
+echo form_open("habilita/edita/".$Fila->CodHabilitacion);
 ?>
-<fieldset><legend>Hablitacion (<?php echo $this->session->userdata('GESTION');?>)</legend>
+<fieldset><legend>Habilitacion (<?php echo $this->session->userdata('GESTION');?>)</legend>
 
 <input type='hidden' name='CodHabilitacion' id='CodHabilitacion' value='<?php echo $Fila->CodHabilitacion; ?>' />
 <br /><label for='FechaInicio'>Fecha de inicio </label>
 <?php
 echo "<input type='text' name='FechaInicio' id='FechaInicio' size='12' maxlength='10' onclick='";
-echo 'fPopCalendar("FechaInicio")'."' value='".$Fila->FechaInicio."'/>";
+echo 'fPopCalendar("FechaInicio")'."' value='".FechaDeMySQL($Fila->FechaInicio)."'/>";
 ?><br /><br />
 
 <br /><label for='FechaFin'>Fecha de fin </label>
 <?php
 echo "<input type='text' name='FechaFin' id='FechaFin' size='12' maxlength='10' onclick='";
-echo 'fPopCalendar("FechaFin")'."' value='".$Fila->FechaFin."'/>";
+echo 'fPopCalendar("FechaFin")'."' value='".FechaDeMySQL($Fila->FechaFin)."'/>";
 ?><br /><br />
 
 <br /><label for='CodCarrera'>Carrera </label>

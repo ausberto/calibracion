@@ -20,31 +20,23 @@ $pdf->Cell(70,5,'Gestion: '.$Gestion,0,1);
 $pdf->Cell(70,5,'Fecha actual: '.date('d/M/Y'),0,1);
 $pdf->Ln(2);
 
-$pdf->SetFont('Arial','B',9);
+$pdf->SetFont('Arial','B',8);
 //titulos de columnas
-$pdf->Cell(22, 5, 'Matrícula', 1, 0, 'L');
-$pdf->Cell(23, 5, 'Fecha', 1, 0, 'L');
-if ($RegUniversitario){
-	$pdf->Cell(22, 5, 'Reg.Univ.', 1, 0, 'L');  
-}
-if ($CI){
-	$pdf->Cell(20, 5, 'CI', 1, 0, 'L');  
-}
-$pdf->Cell(40, 5, 'Nombre', 1, 0, 'L');  
-$pdf->Cell(40, 5, 'Carrera', 1, 1, 'L');  
+$pdf->Cell(20, 5, 'Matrícula', 1, 0, 'L');
+$pdf->Cell(20, 5, 'Fecha', 1, 0, 'L');
+$pdf->Cell(20, 5, 'Reg.Univ.', 1, 0, 'L');  
+$pdf->Cell(20, 5, 'CI', 1, 0, 'L');  
+$pdf->Cell(42, 5, 'Nombre', 1, 0, 'L');  
+$pdf->Cell(43, 5, 'Carrera', 1, 1, 'L');  
 //$pdf->Ln(1);
-$pdf->SetFont('Arial','',9);
+$pdf->SetFont('Arial','',8);
 foreach($Tabla->result() as $row) {
-	$pdf->Cell(22, 5, $row->Matricula, 'LB', 0, 'L');  
-	$pdf->Cell(23, 5, date('d/M/Y',strtotime($row->Fecha)), 'B', 0, 'L');  
-	if ($RegUniversitario){
-		$pdf->Cell(22, 5, $row->RegUniversitario, 'B', 0, 'L');
-	}
-	if ($CI){
-		$pdf->Cell(20, 5, $row->CI, 'B', 0, 'L');
-	}
-	$pdf->Cell(40, 5, utf8_decode($row->NombreCompleto), 'B', 0, 'L');
-	$pdf->Cell(40, 5, utf8_decode($row->NombreCarrera), 'BR', 1, 'L');
+	$pdf->Cell(20, 5, $row->Matricula, 'LB', 0, 'L');  
+	$pdf->Cell(20, 5, date('d/M/Y',strtotime($row->Fecha)), 'B', 0, 'L');  
+	$pdf->Cell(20, 5, $row->RegUniversitario, 'B', 0, 'L');
+	$pdf->Cell(20, 5, $row->CI, 'B', 0, 'L');
+	$pdf->Cell(42, 5, utf8_decode($row->NombreCompleto), 'B', 0, 'L');
+	$pdf->Cell(43, 5, utf8_decode($row->NombreCarrera), 'BR', 1, 'L');
 }
 
 $pdf->Output('quote.pdf', 'D');  
