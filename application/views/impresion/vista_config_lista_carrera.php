@@ -22,7 +22,10 @@ echo form_open("listados/ListaPorCarrera1");
 <br /><br /><hr />
 <button class='button positive' style='margin-left:220px;'> 
 	<img src='<?php echo base_url();?>css/images/icons/tick.png' alt='' /> Imprimir
-</button> 	  
+</button>
+<button class='button positive' style='margin-left:220px;' name='exportar' id='exportar' value='exportar'> 
+	<img src='<?php echo base_url();?>css/images/icons/tick.png' alt='' /> Exportar
+</button>
 </form>
 </fieldset>
 </div>

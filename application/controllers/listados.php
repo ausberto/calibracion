@@ -35,6 +35,20 @@ class Listados extends CI_Controller {
 		$this->load->view('impresion/vista_lista_carrera_pdf', $data);
 	}
 	
+	function ExportaListaCarrera(){
+		$data['CodCarrera'] = $this->input->post('CodCarrera');
+		$data['Carrera'] = $this->modelo_carrera->GetCarrera($this->input->post('CodCarrera'));
+		$data['Gestion'] = $this->input->post('Gestion');
+		$data['CI'] = $this->input->post('CI');
+		$data['delimitador'] = ',';
+		$data['RegUniversitario'] = $this->input->post('RegUniversitario');
+		$data['Tabla'] = $this->modelo_matricula->TablaMatriculados($data['CodCarrera'], $data['Gestion']);
+		$this->output->set_header('Content: text/plain');
+		$this->output->set_header('Content-Disposition: attachment; filename="lista.txt"');
+		$this->output->set_header('Content-Type: application/force-download');
+		$this->load->view('vista_exporta_lista_carrera_txt', $data);
+	}
+	
 	function ListaPorCarrera1(){
 		//$this->funciones->VerificaSesion();
 		
@@ -44,9 +58,12 @@ class Listados extends CI_Controller {
 		$data['CI'] = true;
 		$data['RegUniversitario'] = true;
 		$data['VistaMenu'] = $this->Menu;
-		if( $this->form_validation->run() )
-			$this->ListaPorCarrera2();
-		else {
+		if( $this->form_validation->run() ){
+			if ($this->input->post('exportar'))
+				$this->ExportaListaCarrera();
+			else
+				$this->ListaPorCarrera2();
+		} else {
 			$data['VistaPrincipal'] = 'impresion/vista_config_lista_carrera';
 			$this->load->view('vista_maestra', $data);
 		}
