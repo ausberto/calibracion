@@ -20,22 +20,41 @@
 /**************************************/
 /*              GLOBALS               */
 /**************************************/
-body {
-  background-image:url(../imagenes/diagonal.png);
+body{
+	background-color: #ededed;
+	background-image:url(../imagenes/diagonal.png);
 }
+
 
 /**************************************/
 /*              HEADER                */
 /**************************************/
-#titulou{
+#cabecera{
+    background-color: #676aaf;
     height: 120px;
+    width: 100%;
+    margin: 0px 0px 0px 0px;
+}
+#cabecera hr{
+    background-color: #fff;
+    color: #001b3c;
+    height: 3px;
+}
+#cabecera h1{
+    color:#fff;
+    text-transform: uppercase;
+    text-align: center;
+    font-family: monaco, "Lucida Console", courier, monospace;
+}
+#titulou{
+    height: 119px;
     width: 100%;
     background-color: #676aaf;
     background-image: url(../imagenes/upea.png);
     background-repeat: no-repeat;
     background-position:  right;
     border: 1px solid transparent;
-    
+    z-index: 100;
 }
 #logos{
     height: 100px;
@@ -44,12 +63,11 @@ body {
 #upea{
     background-image: url(../imagenes/upeaex.png);
     background-repeat: no-repeat;
-    background-position:  right;
-    border: 0px solid red;
+    background-position: 0% bottom;
+    background-position-x: 0px;
     width: 50%;
-    height: 450px;
+    height: 470px;
     float: left;
-    
 }
 #login{
     width: 48%;
@@ -58,17 +76,8 @@ body {
     float: right;
     vertical-align: bottom;
 }
-#cabecera h1{
-    color:#fff;
-    text-transform: uppercase;
-    text-align: center;
-    font-family: monaco, "Lucida Console", courier, monospace;
-}
-#pie{
-    background-color: #999999;
-    color:#fff;
-    font-family: monaco, "Lucida Console", courier, monospace;
-}
+
+
 label{
 	float: left;
 	width: 120px;
@@ -79,7 +88,9 @@ label{
 /*             NAVIGATION             */
 /**************************************/
 
-
+#vista_nula{
+    height: 570px;    
+}
 
 /**************************************/
 /*            MAIN CONTENT            */
@@ -90,4 +101,15 @@ label{
 /**************************************/
 /*               FOOTER               */
 /**************************************/
-
+#pie{
+    background-color: #f4d673;
+    color:#000;
+    font-family: monaco, "Lucida Console", courier, monospace;
+    font-weight: bold;
+    text-align: center;
+    vertical-align: middle;
+}
+#pie hr{
+    background-color: #cd474b;
+    height: 3px;
+}

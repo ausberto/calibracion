@@ -4,4 +4,3 @@
     <h1>Sistema de Matriculaci&oacute;n </h1>
     </div>
 </div>
-<hr>

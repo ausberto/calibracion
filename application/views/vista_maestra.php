@@ -25,6 +25,7 @@
 		echo "<![endif]-->";
 		echo "<link rel='stylesheet' href='".base_url()."css/style.css' type='text/css' media='screen, projection'>";
 
+		echo "<link href='" . base_url() . "css/jquery-ui.css' rel='stylesheet' type='text/css' />";
 		echo "<link href='" . base_url() . "css/cwcalendar.css' rel='stylesheet' type='text/css' />";
 		echo "<script type='text/javascript' src='".base_url()."js/calendar.js'></script>";        
 		echo "<script type='text/javascript' src='".base_url()."js/jquery.js'></script>";   
@@ -39,10 +40,10 @@
     <body>        
 		<div class="container">
 		<?php                            
-            date_default_timezone_set('America/La_Paz');
+                        date_default_timezone_set('America/La_Paz');
 			$this->load->view('vista_cabezera');
 			if( isset($VistaMenu) ) 
-                $this->load->view($VistaMenu);
+                        $this->load->view($VistaMenu);
 			$this->load->view($VistaPrincipal);
 			$this->load->view('vista_pie');
         ?>
