@@ -6,13 +6,9 @@ class Calibra extends CI_Controller {
 	{
 		$this->load->library('session');
 		$this->load->helper('url');
-		$data["css"]='<link rel="stylesheet" href="'.base_url().'css/style.css" type="text/css" />
-		<link rel="stylesheet" href="'.base_url().'js/shadowbox-3.0.3/shadowbox.css" type="text/css" />
-		<link rel="stylesheet" href="'.base_url().'js/jqueryUI/css/south-street/jquery-ui-1.8.16.custom.css" type="text/css" />
+		$data["css"]='<link rel="stylesheet" href="'.base_url().'js/shadowbox-3.0.3/shadowbox.css" type="text/css" />
 		<link rel="stylesheet" href="'.base_url().'css/style_calibra.css" type="text/css" />';
-		$data["javascript"]='<script type="text/javascript" src="'.base_url().'js/jquery-1.7.min.js"></script>
-		<script type="text/javascript" src="'.base_url().'js/shadowbox-3.0.3/shadowbox.js"></script>
-		<script type="text/javascript" src="'.base_url().'js/jqueryUI/js/jquery-ui-1.8.16.custom.min.js"></script>
+		$data["javascript"]='<script type="text/javascript" src="'.base_url().'js/shadowbox-3.0.3/shadowbox.js"></script>
 		<script type="text/javascript" src="'.base_url().'js/functions.js"></script>';
 		
 		if (!$this->session->userdata('anverso')) {
@@ -27,33 +23,23 @@ class Calibra extends CI_Controller {
 		$data["anverso"]=$this->session->userdata('anverso');
 		$data["reverso"]=$this->session->userdata('reverso');
 		$data["espacios"]=$this->session->userdata('espacios');
-		//$this->load->view('calibra',$data);
-		$data['VistaPrincipal'] = 'calibra';
-		$this->load->view('vista_maestra',$data);
+		$this->load->view('calibra',$data);
 	}
 	
 	public function printpage()
 	{
 		$this->load->library('session');
 		$this->load->helper('url');
-		$data["css"]='<link rel="stylesheet" href="'.base_url().'css/style.css" type="text/css" />
-		<link rel="stylesheet" href="'.base_url().'js/shadowbox-3.0.3/shadowbox.css" type="text/css" />
-		<link rel="stylesheet" href="'.base_url().'js/jqueryUI/css/south-street/jquery-ui-1.8.16.custom.css" type="text/css" />
+		$data["css"]='<link rel="stylesheet" href="'.base_url().'js/shadowbox-3.0.3/shadowbox.css" type="text/css" />
 		<link rel="stylesheet" href="'.base_url().'css/style_print.css" type="text/css" />';
-		$data["javascript"]='<script type="text/javascript" src="'.base_url().'js/jquery-1.7.min.js"></script>
-		<script type="text/javascript" src="'.base_url().'js/shadowbox-3.0.3/shadowbox.js"></script>
-		<script type="text/javascript" src="'.base_url().'js/jqueryUI/js/jquery-ui-1.8.16.custom.min.js"></script>';
+		$data["javascript"]='<script type="text/javascript" src="'.base_url().'js/shadowbox-3.0.3/shadowbox.js"></script>';
 
 		$arrayVars=array('{Apellidos y Nombres}','{Carnet}','{Reg. universitario}','{Carrera}','{Domicilio}','{Fecha}','{Categoria}','{Numero}');
 		$arrayDatos=array('Huanca Vila Ausberto','1234567 LP','12387-UIOPO','Ingenieria de sistemas','Villa Victoria Calle Pacajes #10','20 de octubre','Mi categoria','12313478979');
 		$data["anverso"]=str_replace($arrayVars,$arrayDatos,$this->session->userdata('anverso'));
 		$data["reverso"]=str_replace($arrayVars,$arrayDatos,$this->session->userdata('reverso'));
-		//$data["anverso"]=$this->session->userdata('anverso');
-		//$data["reverso"]=$this->session->userdata('reverso');
 		$data["espacios"]=$this->session->userdata('espacios');
-		//$this->load->view('print',$data);
-		$data['VistaPrincipal'] = 'print';
-		$this->load->view('vista_maestra',$data);
+		$this->load->view('print',$data);
 	}
 	
 	public function ajax($opcion='')

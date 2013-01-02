@@ -1,4 +1,4 @@
 <div id="pie" class='span-24'>
-<hr />
+<hr>
 <p><strong>Regin</strong> - Sistema de matriculacion</p>
 </div>

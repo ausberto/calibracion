@@ -87,10 +87,10 @@ $Llave = $this->session->userdata('Llave'); ?></h5>
                     <?php } ?>
                 </ul>
             </li>
-            <li><a href='#' title="Anulacion de matricula">Utilidades</a>
+            <li><a href='#' >Utilidades</a>
                 <ul>
                     <?php if ($Llave[16]) { ?>
-                    <li><a href='<?php echo base_url() ?>index.php/impresion/ReporteDiario' >Calibraci&oacute;n de la matricula</a> </li>
+                    <li><a href='<?php echo base_url() ?>calibra' title="Ajuste de la impresion de matriculas">Calibraci&oacute;n de la matricula</a> </li>
                     <?php } ?>
                     <?php if ($Llave[21]) { ?>
                     <li><a href='<?php echo base_url() ?>Usuario/Listado' >Administraci&oacute;n de usuarios</a> 

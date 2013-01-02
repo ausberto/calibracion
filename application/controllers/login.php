@@ -35,7 +35,8 @@ class Login extends CI_Controller {
                 $this->load->view('vista_login');
             }
         } else {
-            $this->load->view('vista_login');
+            $data['VistaPrincipal'] = 'vista_login';
+			$this->load->view('vista_maestra', $data);
         }
     }
 
