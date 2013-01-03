@@ -1,5 +1,5 @@
 <div class='span-24'>
-    <h5>Bienvenido <?php echo $this->session->userdata('Nombre');
+    <h5>Bienvenido <?php echo $this->session->userdata('NombreUsuario');
 $Llave = $this->session->userdata('Llave'); ?></h5>
     <div id="page-wrap">
         <ul class="dropdown">
@@ -42,7 +42,7 @@ $Llave = $this->session->userdata('Llave'); ?></h5>
                             <li><a href='<?php echo base_url() ?>listados/ListaPorCarrera1' title="Estudiantes matriculados a una carrera">Matriculaci&oacute;n por carrera</a></li>
                             <?php } ?>
                             <?php if ($Llave[11]) { ?>
-                            <li><a href='<?php echo base_url() ?>impresion/Matricula' title="Impresion de matricula">Matriculas expedidas</a></li>
+                            <li><a href='<?php echo base_url() ?>listados/ListaMatriculas' title="Impresion de matricula">Matriculas expedidas</a></li>
                             <?php } ?>
                             <?php if ($Llave[12]) { ?>
                             <li><a href='<?php echo base_url() ?>impresion/ReporteDiario' title="">Lista por gestion</a></li>
@@ -129,4 +129,5 @@ $Llave = $this->session->userdata('Llave'); ?></h5>
             <li><a href='<?php echo base_url() ?>index.php/Login/Logout' title="Cerrar sesi&oacute;n">Salir</a></li>
         </ul>
     </div>
+	<hr />
 </div>

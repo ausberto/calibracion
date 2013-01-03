@@ -13,12 +13,10 @@ echo form_open("listados/ListaPorCarrera1");
 <label for='Hasta'>Gesti&oacute;n </label>
 <?php echo $ComboGestion; ?><br /><br />
 
+<input type="checkbox" id="CI" name="CI" <?php echo ($CI? 'checked':''); ?> /> C.I.&nbsp;&nbsp;&nbsp;&nbsp;
 
-<label for='CI'>CI</label>
-<input type="checkbox" id="CI" name="CI" <?php echo ($CI? 'checked':''); ?> /> &nbsp;&nbsp;&nbsp;&nbsp;
+<input type="checkbox" id="RegUniversitario" name="RegUniversitario" <?php echo ($RegUniversitario? 'checked': ''); ?> /> Reg. universitario 
 
-<label for='RegUniversitario'>Reg. universitario </label>
-<input type="checkbox" id="RegUniversitario" name="RegUniversitario" <?php echo ($RegUniversitario? 'checked': ''); ?> /> 
 <br /><br /><hr />
 <button class='button positive' style='margin-left:220px;'> 
 	<img src='<?php echo base_url();?>css/images/icons/tick.png' alt='' /> Imprimir
