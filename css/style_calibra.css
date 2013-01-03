@@ -6,9 +6,11 @@
 }
 #anverso{
 	background: url("../imagenes/anverso.jpg") no-repeat;
-	border:1px solid #000;
 }
 #reverso{
 	background: url("../imagenes/reverso.jpg") no-repeat;
+}
+#reverso,#anverso{
 	border:1px solid #000;
+	width:500px;
 }

@@ -1,5 +1,4 @@
 		$(document).ready(function() {
-			Shadowbox.init();
 			$(".draggable").draggable();
 		});
 		function recarga(){
@@ -17,9 +16,9 @@
 					}
 				});
 		}
-		function reset(){
+		function resetD(){
 			$.ajax({
-					url: 'ajax',
+					url: 'ajax/',
 					type: "POST",
 					cache: false,
 					data: "reset=1",
