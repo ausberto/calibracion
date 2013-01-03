@@ -92,5 +92,24 @@ class Listados extends CI_Controller {
 			$this->load->view('vista_maestra', $data);
 		}
 	}
+	
+	function EstadisticaPorCarreraEdad2(){
+		$data['Gestion'] = $this->input->post('Gestion');
+		$data['Tabla'] = $this->modelo_matricula->TablaCarreraEdad($data['Gestion']);
+		$this->output->set_header('Content: application/pdf');
+		$this->load->view('impresion/vista_lista_carrera_edad_pdf', $data);
+	}
+	
+	function EstadisticaPorCarreraEdad(){
+		$data['ComboGestion'] = ComboGestion($this->modelo_valores->GetNumero('GESTION'));
+		$data['VistaMenu'] = $this->Menu;
+		$this->form_validation->set_rules('Gestion', 'Gestion', 'required|xss_clean');
+		if( $this->form_validation->run() ){
+			$this->EstadisticaPorCarreraEdad2();
+		} else {
+			$data['VistaPrincipal'] = 'impresion/vista_config_lista_carrera_edad';
+			$this->load->view('vista_maestra', $data);
+		}
+	}
 }
 ?>

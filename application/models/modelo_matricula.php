@@ -120,6 +120,21 @@ class Modelo_matricula extends CI_Model {
 				ORDER BY NombreCompleto";
 		return $this->db->query($sql);
 	}
+	
+	function TablaCarreraEdad($Gestion) {
+		$sql = "SELECT carrera.CodCarrera,carrera.Nombre AS NombreCarrera, 
+				IF( persona.Genero='M', COUNT(persona.Genero), NULL ) AS Varones,
+				IF( persona.Genero='F', COUNT(persona.Genero), NULL ) AS Mujeres
+				FROM matricula, estudiante_carrera, persona, estudiante, carrera
+				WHERE matricula.CodEstudianteCarrera=estudiante_carrera.CodEstudianteCarrera
+				AND estudiante_carrera.CodPersona=persona.CodPersona
+				AND persona.CodPersona=estudiante.CodPersona
+				AND estudiante_carrera.CodPersona=estudiante.CodPersona
+				AND matricula.Gestion='$Gestion'
+				AND carrera.CodCarrera=estudiante_carrera.CodCarrera
+				GROUP BY carrera.CodCarrera,persona.Genero ORDER BY NombreCarrera";
+		return $this->db->query($sql);
+	}
 }
 
 ?>
