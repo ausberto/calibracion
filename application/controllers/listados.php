@@ -8,7 +8,6 @@ class Listados extends CI_Controller {
         parent::__construct();
 		define('FPDF_FONTPATH',$this->config->item('fonts_path'));
 		$this->load->library('fpdf');
-
 		//$TipoUsuario = $this->session->userdata('TipoUsuario');
 		$TipoUsuario = 1;
 		$this->Menu = ObtieneVista($TipoUsuario);
@@ -24,6 +23,32 @@ class Listados extends CI_Controller {
         $this->load->view('vista_maestra', $data);
     }
 	
+	function ExportaListaCarrera2(){
+		$data['CodCarrera'] = $this->input->post('CodCarrera');
+		$data['Carrera'] = $this->modelo_carrera->GetCarrera($this->input->post('CodCarrera'));
+		$data['Gestion'] = $this->input->post('Gestion');
+		$data['delimitador'] = ';';
+		$data['Tabla'] = $this->modelo_matricula->TablaMatriculados($data['CodCarrera'], $data['Gestion']);
+		//$this->output->set_header('Content: text/plain');
+		$this->output->set_header('Content-Disposition: attachment; filename="lista.csv"');
+		$this->output->set_header('Content-Type: application/force-download');
+		$this->load->view('impresion/vista_exporta_lista_carrera', $data);
+	}
+	
+	function ExportaListaCarrera(){
+		//$this->funciones->VerificaSesion();
+		$this->form_validation->set_rules('CodCarrera', 'carrera', 'required|xss_clean');
+		$data['ComboCarrera'] = $this->modelo_carrera->ComboCarrera();
+		$data['ComboGestion'] = ComboGestion($this->modelo_valores->GetNumero('GESTION'));
+		$data['VistaMenu'] = $this->Menu;
+		if( $this->form_validation->run() ){
+			$this->ExportaListaCarrera2();
+		} else {
+			$data['VistaPrincipal'] = 'impresion/vista_config_exporta_carrera';
+			$this->load->view('vista_maestra', $data);
+		}
+	}
+	
 	function ListaPorCarrera2(){
 		$data['CodCarrera'] = $this->input->post('CodCarrera');
 		$data['Carrera'] = $this->modelo_carrera->GetCarrera($this->input->post('CodCarrera'));
@@ -33,20 +58,6 @@ class Listados extends CI_Controller {
 		$data['Tabla'] = $this->modelo_matricula->TablaMatriculados($data['CodCarrera'], $data['Gestion']);
 		$this->output->set_header('Content: application/pdf');
 		$this->load->view('impresion/vista_lista_carrera_pdf', $data);
-	}
-	
-	function ExportaListaCarrera(){
-		$data['CodCarrera'] = $this->input->post('CodCarrera');
-		$data['Carrera'] = $this->modelo_carrera->GetCarrera($this->input->post('CodCarrera'));
-		$data['Gestion'] = $this->input->post('Gestion');
-		$data['CI'] = $this->input->post('CI');
-		$data['delimitador'] = ',';
-		$data['RegUniversitario'] = $this->input->post('RegUniversitario');
-		$data['Tabla'] = $this->modelo_matricula->TablaMatriculados($data['CodCarrera'], $data['Gestion']);
-		$this->output->set_header('Content: text/plain');
-		$this->output->set_header('Content-Disposition: attachment; filename="lista.txt"');
-		$this->output->set_header('Content-Type: application/force-download');
-		$this->load->view('vista_exporta_lista_carrera_txt', $data);
 	}
 	
 	function ListaPorCarrera1(){
@@ -59,12 +70,40 @@ class Listados extends CI_Controller {
 		$data['RegUniversitario'] = true;
 		$data['VistaMenu'] = $this->Menu;
 		if( $this->form_validation->run() ){
-			if ($this->input->post('exportar'))
-				$this->ExportaListaCarrera();
-			else
 				$this->ListaPorCarrera2();
 		} else {
 			$data['VistaPrincipal'] = 'impresion/vista_config_lista_carrera';
+			$this->load->view('vista_maestra', $data);
+		}
+	}
+	
+	function ListaPorGestion2(){
+		//0 : Soltero(a)	1 : Casado(a)	2 : Conviviente		3 : Divorciado(a)	4 : Viudo(a)
+		$data['Gestion'] = $this->input->post('Gestion');
+		$data['Varones'] = $this->input->post('Varones');
+		$data['Mujeres'] = $this->input->post('Mujeres');
+		
+		$TipoReporte = ($data['Mujeres'])?'F':'';
+		$TipoReporte = ($data['Varones'])?'M':$TipoReporte;
+		$TipoReporte = ($data['Mujeres']&&$data['Varones'])?'FM':$TipoReporte;
+
+		$ArrayTiposReportes=array('F'=>'Mujeres','M'=>'Varones','FM'=>'Varones y mujeres');
+		$data['Reporte'] = $ArrayTiposReportes[$TipoReporte];
+		$data['Tabla'] = $this->modelo_matricula->TablaEstadosCiviles($data['Gestion'],$TipoReporte);
+		$this->output->set_header('Content: application/pdf');
+		$this->load->view('impresion/vista_lista_gestion_pdf', $data);
+	}
+	
+	function ListaPorGestion(){
+		$data['ComboGestion'] = ComboGestion($this->modelo_valores->GetNumero('GESTION'));
+		$data['Varones'] = true;
+		$data['Mujeres'] = true;
+		$data['VistaMenu'] = $this->Menu;
+		$this->form_validation->set_rules('Gestion', 'Gestion', 'required|xss_clean');
+		if( $this->form_validation->run() ){
+				$this->ListaPorGestion2();
+		} else {
+			$data['VistaPrincipal'] = 'impresion/vista_config_lista_gestion';
 			$this->load->view('vista_maestra', $data);
 		}
 	}

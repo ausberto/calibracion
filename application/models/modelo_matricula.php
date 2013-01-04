@@ -135,6 +135,25 @@ class Modelo_matricula extends CI_Model {
 				GROUP BY carrera.CodCarrera,persona.Genero ORDER BY NombreCarrera";
 		return $this->db->query($sql);
 	}
+	
+	function TablaEstadosCiviles($Gestion,$Tipo) {
+		$sql = "SELECT carrera.CodCarrera,carrera.Nombre AS NombreCarrera, persona.EstadoCivil,
+				IF( persona.EstadoCivil='0', 1, NULL ) AS Solteros,
+				IF( persona.EstadoCivil='1', 1, NULL ) AS Casados,
+				IF( persona.EstadoCivil='2', 1, NULL ) AS Convivientes,
+				IF( persona.EstadoCivil='3', 1, NULL ) AS Divorciados,
+				IF( persona.EstadoCivil='4', 1, NULL ) AS Viudos
+				FROM matricula, estudiante_carrera, persona, estudiante, carrera
+				WHERE matricula.CodEstudianteCarrera=estudiante_carrera.CodEstudianteCarrera
+				AND estudiante_carrera.CodPersona=persona.CodPersona
+				AND persona.CodPersona=estudiante.CodPersona
+				AND estudiante_carrera.CodPersona=estudiante.CodPersona
+				AND matricula.Gestion='$Gestion'
+				".(($Tipo!="FM")?"AND persona.Genero='$Tipo'":"")."
+				AND carrera.CodCarrera=estudiante_carrera.CodCarrera
+				ORDER BY NombreCarrera";
+		return $this->db->query($sql);
+	}
 }
 
 ?>
