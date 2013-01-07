@@ -108,6 +108,63 @@ class Listados extends CI_Controller {
 		}
 	}
 	
+	function ListaPorTipoColegio2(){
+		$data['Gestion'] = $this->input->post('Gestion');
+		$data['Varones'] = $this->input->post('Varones');
+		$data['Mujeres'] = $this->input->post('Mujeres');
+		$TipoReporte = ($data['Mujeres'])?'F':'';
+		$TipoReporte = ($data['Varones'])?'M':$TipoReporte;
+		$TipoReporte = ($data['Mujeres']&&$data['Varones'])?'FM':$TipoReporte;
+		$ArrayTiposReportes=array('F'=>'Mujeres','M'=>'Varones','FM'=>'Varones y mujeres');
+		$data['Reporte'] = $ArrayTiposReportes[$TipoReporte];
+		$data['Tabla'] = $this->modelo_matricula->TablaTipoColegio($data['Gestion'],$TipoReporte);
+		$this->output->set_header('Content: application/pdf');
+		$this->load->view('impresion/vista_lista_tipo_colegio_pdf', $data);
+	}
+	
+	function ListaPorTipoColegio(){
+		$data['ComboGestion'] = ComboGestion($this->modelo_valores->GetNumero('GESTION'));
+		$data['Varones'] = true;
+		$data['Mujeres'] = true;
+		$data['VistaMenu'] = $this->Menu;
+		$this->form_validation->set_rules('Gestion', 'Gestion', 'required|xss_clean');
+		if( $this->form_validation->run() ){
+				$this->ListaPorTipoColegio2();
+		} else {
+			$data['VistaPrincipal'] = 'impresion/vista_config_lista_tipo_colegio';
+			$this->load->view('vista_maestra', $data);
+		}
+	}
+	
+	function ListaPorUniversidadTitulo2(){
+		$data['Gestion'] = $this->input->post('Gestion');
+		$data['Varones'] = $this->input->post('Varones');
+		$data['Mujeres'] = $this->input->post('Mujeres');
+		$TipoReporte = ($data['Mujeres'])?'F':'';
+		$TipoReporte = ($data['Varones'])?'M':$TipoReporte;
+		$TipoReporte = ($data['Mujeres']&&$data['Varones'])?'FM':$TipoReporte;
+		$ArrayTiposReportes=array('F'=>'Mujeres','M'=>'Varones','FM'=>'Varones y mujeres');
+		$data['Reporte'] = $ArrayTiposReportes[$TipoReporte];
+		$data['Tabla'] = $this->modelo_matricula->TablaTipoColegio($data['Gestion'],$TipoReporte);
+		$this->output->set_header('Content: application/pdf');
+		$this->load->view('impresion/vista_lista_universidad_titulo_pdf', $data);
+		//UPEA UMSA UTO UTF USXX USFX UMSS UAGRM UAP UJMS UTB SEDUCA
+	}
+	
+	function ListaPorUniversidadTitulo(){
+		$data['ComboGestion'] = ComboGestion($this->modelo_valores->GetNumero('GESTION'));
+		$data['Varones'] = true;
+		$data['Mujeres'] = true;
+		$data['VistaMenu'] = $this->Menu;
+		$this->form_validation->set_rules('Gestion', 'Gestion', 'required|xss_clean');
+		if( $this->form_validation->run() ){
+				$this->ListaPorUniversidadTitulo2();
+		} else {
+			$data['VistaPrincipal'] = 'impresion/vista_config_lista_universidad_titulo';
+			$this->load->view('vista_maestra', $data);
+		}
+	}
+	
 	function ListaMatriculas2(){
 		$data['CodCarrera'] = $this->input->post('CodCarrera');
 		//$data['Carrera'] = $this->modelo_carrera->GetCarrera($this->input->post('CodCarrera'));

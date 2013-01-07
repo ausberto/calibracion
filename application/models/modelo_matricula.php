@@ -154,6 +154,53 @@ class Modelo_matricula extends CI_Model {
 				ORDER BY NombreCarrera";
 		return $this->db->query($sql);
 	}
+	
+	function TablaTipoColegio($Gestion,$Tipo) {
+		$sql = "SELECT carrera.CodCarrera,carrera.Nombre AS NombreCarrera, 
+				IF( preuniversitario.TipoColegio='0', 1, NULL ) AS Publico,
+				IF( preuniversitario.TipoColegio='1', 1, NULL ) AS Privado,
+				IF( preuniversitario.TipoColegio='2', 1, NULL ) AS Cema,
+				IF( preuniversitario.TipoColegio='3', 1, NULL ) AS Otro
+				FROM matricula, estudiante_carrera, persona, estudiante, carrera,preuniversitario
+				WHERE matricula.CodEstudianteCarrera=estudiante_carrera.CodEstudianteCarrera
+				AND estudiante_carrera.CodPersona=persona.CodPersona
+				AND persona.CodPersona=estudiante.CodPersona
+				AND estudiante_carrera.CodPersona=estudiante.CodPersona
+				AND matricula.Gestion='$Gestion'
+				".(($Tipo!="FM")?"AND persona.Genero='$Tipo'":"")."
+				AND carrera.CodCarrera=estudiante_carrera.CodCarrera
+				AND preuniversitario.CodPersona=persona.CodPersona
+				ORDER BY NombreCarrera";
+		return $this->db->query($sql);
+	}
+	
+	function TablaUniversidadTitulo($Gestion,$Tipo) {
+		$sql = "SELECT carrera.CodCarrera,carrera.Nombre AS NombreCarrera, 
+				IF( preuniversitario.CodUniversidad='11', 1, NULL ) AS UPEA,
+				IF( preuniversitario.CodUniversidad='12', 1, NULL ) AS UMSA,
+				IF( preuniversitario.CodUniversidad='13', 1, NULL ) AS UTO,
+				IF( preuniversitario.CodUniversidad='14', 1, NULL ) AS UTF,
+				IF( preuniversitario.CodUniversidad='15', 1, NULL ) AS USXX,
+				IF( preuniversitario.CodUniversidad='16', 1, NULL ) AS USFX,
+				IF( preuniversitario.CodUniversidad='17', 1, NULL ) AS UMSS,
+				IF( preuniversitario.CodUniversidad='18', 1, NULL ) AS UAGRM,
+				IF( preuniversitario.CodUniversidad='19', 1, NULL ) AS UAP,
+				IF( preuniversitario.CodUniversidad='20', 1, NULL ) AS UJMS,
+				IF( preuniversitario.CodUniversidad='21', 1, NULL ) AS UTB,
+				IF( preuniversitario.CodUniversidad='22', 1, NULL ) AS SEDUCA,
+				IF( preuniversitario.CodUniversidad='99', 1, NULL ) AS SINTITULO
+				FROM matricula, estudiante_carrera, persona, estudiante, carrera,preuniversitario
+				WHERE matricula.CodEstudianteCarrera=estudiante_carrera.CodEstudianteCarrera
+				AND estudiante_carrera.CodPersona=persona.CodPersona
+				AND persona.CodPersona=estudiante.CodPersona
+				AND estudiante_carrera.CodPersona=estudiante.CodPersona
+				AND matricula.Gestion='$Gestion'
+				".(($Tipo!="FM")?"AND persona.Genero='$Tipo'":"")."
+				AND carrera.CodCarrera=estudiante_carrera.CodCarrera
+				AND preuniversitario.CodPersona=persona.CodPersona
+				ORDER BY NombreCarrera";
+		return $this->db->query($sql);
+	}	
 }
 
 ?>
