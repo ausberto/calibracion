@@ -145,7 +145,7 @@ class Listados extends CI_Controller {
 		$TipoReporte = ($data['Mujeres']&&$data['Varones'])?'FM':$TipoReporte;
 		$ArrayTiposReportes=array('F'=>'Mujeres','M'=>'Varones','FM'=>'Varones y mujeres');
 		$data['Reporte'] = $ArrayTiposReportes[$TipoReporte];
-		$data['Tabla'] = $this->modelo_matricula->TablaTipoColegio($data['Gestion'],$TipoReporte);
+		$data['Tabla'] = $this->modelo_matricula->TablaUniversidadTitulo($data['Gestion'],$TipoReporte);
 		$this->output->set_header('Content: application/pdf');
 		$this->load->view('impresion/vista_lista_universidad_titulo_pdf', $data);
 		//UPEA UMSA UTO UTF USXX USFX UMSS UAGRM UAP UJMS UTB SEDUCA
